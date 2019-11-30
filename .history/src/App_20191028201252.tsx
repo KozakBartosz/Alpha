@@ -17,7 +17,7 @@ const App: React.FC = () => {
 				</h2>
 				<div>
 					{player.components.map(component => (
-						<button key={component.id} onClick={() => setActionItem(component.id)}>
+						<button onClick={() => setActionItem(component.id)}>
 							<strong>{component.name}</strong>
 							<small>{component.hp}</small> - <small>{component.possibility}</small>
 						</button>
@@ -31,7 +31,6 @@ const App: React.FC = () => {
 				<div>
 					{enemy.components.map(component => (
 						<button
-							key={component.id}
 							onClick={() =>
 								actionItem &&
 								addAction({

@@ -31,7 +31,6 @@ const App: React.FC = () => {
 				<div>
 					{enemy.components.map(component => (
 						<button
-							key={component.id}
 							onClick={() =>
 								actionItem &&
 								addAction({

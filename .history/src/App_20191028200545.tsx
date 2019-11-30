@@ -17,7 +17,7 @@ const App: React.FC = () => {
 				</h2>
 				<div>
 					{player.components.map(component => (
-						<button key={component.id} onClick={() => setActionItem(component.id)}>
+						<button onClick={() => setActionItem(component.id)}>
 							<strong>{component.name}</strong>
 							<small>{component.hp}</small> - <small>{component.possibility}</small>
 						</button>
@@ -30,23 +30,13 @@ const App: React.FC = () => {
 				</h2>
 				<div>
 					{enemy.components.map(component => (
-						<button
-							key={component.id}
-							onClick={() =>
-								actionItem &&
-								addAction({
-									item: actionItem,
-									target: component.id,
-									type: 'shoot',
-								})
-							}>
+						<button onClick={() => setActionTarget(component.id)}>
 							<strong>{component.name}</strong>
 							<small>{component.hp}</small> - <small>{component.possibility}</small>
 						</button>
 					))}
 				</div>
 			</main>
-			<p>{JSON.stringify(player.actions)}</p>
 			<header>
 				<h1>Round: {game.round}</h1>
 				<button onClick={nextRound}>NextRound</button>

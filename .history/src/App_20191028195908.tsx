@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { useGame, Id } from './game';
+import { useGame } from './game';
 
 const App: React.FC = () => {
-	const { player, enemy, addAction, game, nextRound } = useGame();
-
-	const [actionItem, setActionItem] = useState<Id | null>(null);
-	const [actionTarget, setActionTarget] = useState<Id | null>(null);
+	const { player, enemy, setActionItem, addAction, game, nextRound } = useGame();
 
 	return (
 		<>
@@ -17,7 +14,7 @@ const App: React.FC = () => {
 				</h2>
 				<div>
 					{player.components.map(component => (
-						<button key={component.id} onClick={() => setActionItem(component.id)}>
+						<button onClick={setActionItem}>
 							<strong>{component.name}</strong>
 							<small>{component.hp}</small> - <small>{component.possibility}</small>
 						</button>
@@ -30,26 +27,16 @@ const App: React.FC = () => {
 				</h2>
 				<div>
 					{enemy.components.map(component => (
-						<button
-							key={component.id}
-							onClick={() =>
-								actionItem &&
-								addAction({
-									item: actionItem,
-									target: component.id,
-									type: 'shoot',
-								})
-							}>
+						<button>
 							<strong>{component.name}</strong>
 							<small>{component.hp}</small> - <small>{component.possibility}</small>
 						</button>
 					))}
 				</div>
 			</main>
-			<p>{JSON.stringify(player.actions)}</p>
 			<header>
 				<h1>Round: {game.round}</h1>
-				<button onClick={nextRound}>NextRound</button>
+				<button onClick={nextRound}>Action</button>
 			</header>
 		</>
 	);
